@@ -3,6 +3,14 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/test.css')
+    link(rel="stylesheet", href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css")
+    
   body
+    include base/navigation.jade
     block content
+    block foot
+      .footer
+        p Copyright © 2021 Master Studio All Rights Reserved. 大师工作室
+    script(src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js") 
+    script(src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js") 
+    script(src="/javascripts/custom.js") 
