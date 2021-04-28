@@ -21,17 +21,17 @@ block navigation
           h3.ta-c
              【ICP备案登录】
         .modal-body
-          form(action="/login", method="post",class="form-horizontal",role="form") 
+          form(action="/login/", method="post",class="form-horizontal",role="form") 
             .form-group
               label(for="username",class="col-sm-3 control-label")
                 姓名
               .col-sm-8
-                input(type="text",class="form-control",id="username",placeholder="请输入名字")
+                input(type="text",class="form-control",name="username",placeholder="请输入名字")
             .form-group
               label(for="password",class="col-sm-3 control-label")
                 姓名
               .col-sm-8
-                input(type="password",class="form-control",id="password",placeholder="请输入密码")
+                input(type="password",class="form-control",name="password",placeholder="请输入密码")
             hr
             .d-f  
               button(type="submit",class="btn btn-primary") 登录

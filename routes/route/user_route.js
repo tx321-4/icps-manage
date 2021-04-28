@@ -1,5 +1,4 @@
 exports.login = async(req, res) =>{
-  await res.render('login',{
-    title: '登录'
-  })
+  req.flash('error', '密码错误');
+  return res.redirect('back');
 }

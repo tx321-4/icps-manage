@@ -15,6 +15,9 @@ ICP备案中心，方便查阅
 * 免启动 nodemon
 * 模板 jade
 * 样式表 express-stylus、 nib
+* 通知 connect-flash
+* 配置环境变量 NODE_ENV
+* 修改端口
 
 
 ### 热更新
@@ -47,3 +50,16 @@ ICP备案中心，方便查阅
   ...
 
 ```
+
+
+### 通知  connect-flash
+* 要与 express-session 搭配使用
+
+### 配置环境变量 NODE_ENV
+```bash
+  "dev": "set NODE_ENV=development && nodemon DEBUG=icps-manage:* ./bin/www",
+  "pro": "set NODE_ENV=production && nodemon DEBUG=icps-manage:* ./bin/www"
+```
+
+### 修改端口号
+* app.js 添加 process.env.PORT = 端口号;
