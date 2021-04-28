@@ -10,7 +10,13 @@ if ( NODE_ENV == 'development' ) {
       key: 'icp',
       // maxAge: 2592000000 // 30天
       maxAge: 86400000 // 1天
-    }
+    },
+    mysql: {
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'icpsexpress'
+    },
   }
 } else if ( NODE_ENV == 'production' ) {
   module.exports = {

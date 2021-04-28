@@ -1,6 +1,8 @@
 # icps-manage
 ICP备案中心，方便查阅
 
+> 本地数据库名 icpsexpress
+
 ### 初始化项目
 * express 项目名
 
@@ -18,6 +20,7 @@ ICP备案中心，方便查阅
 * 通知 connect-flash
 * 配置环境变量 NODE_ENV
 * 修改端口
+* 链接数据库  sequelize mysql2
 
 
 ### 热更新
@@ -63,3 +66,8 @@ ICP备案中心，方便查阅
 
 ### 修改端口号
 * app.js 添加 process.env.PORT = 端口号;
+
+
+### 链接数据库
+* models.sync() - 如果表不存在,则创建该表(如果已经存在,则不执行任何操作)
+* models.sync({ force: true })  - 将创建表,如果表已经存在,则将其首先删除

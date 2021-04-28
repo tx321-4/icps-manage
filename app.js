@@ -1,17 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const logger = require('morgan');
+const stylus = require('express-stylus')
+const nib = require('nib');
+const models = require('./models/models');
+
 const config = require('./config');
-var logger = require('morgan');
-var stylus = require('express-stylus')
-var nib = require('nib');
-var Routes = require('./routes');
+
+const Routes = require('./routes');
 const publicDir = path.join(__dirname, '/public');
 
-var app = express();
+const app = express();
+
+//创建表
+models.sync();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
