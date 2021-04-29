@@ -48,8 +48,9 @@ app.use(session({
 app.use(flash());
 
 app.use(function(req,res, next){
+  res.locals.user = req.session.user;
   res.locals.success = req.flash('success').toString();
-  res.locals.error = req.flash('error').toString();
+  res.locals.danger = req.flash('danger').toString();
   next();
 })
 
@@ -66,7 +67,7 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+  
   // render the error page
   res.status(err.status || 500);
   res.render('error');

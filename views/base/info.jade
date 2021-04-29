@@ -1,9 +1,10 @@
-if success
-  .alert.alert-success.alert-dismissable.info-alert-success
-    button(type="button",class="close",data-dismiss="alert",aria-hidden="true" ) &times;
-    p #{success}
-else if error
-  .alert.alert-danger.alert-dismissable.info-alert-danger
-    button(type="button",class="close",data-dismiss="alert",aria-hidden="true" ) &times;
-    p #{error}
-else
+block info
+  if success
+    .alert.alert-success.alert-dismissable.info-alert-success
+      button(type="button",class="close",data-dismiss="alert",aria-hidden="true" ) &times;
+      p #{success}
+  else if danger
+    .alert.alert-danger.alert-dismissable.info-alert-danger
+      button(type="button",class="close",data-dismiss="alert",aria-hidden="true" ) &times;
+      p #{danger}
+  else

@@ -1,5 +1,5 @@
 const { Sequelize, sequelize } = require('./db');
-const usertype_model = require('./usertype_model');
+const role_model = require('./role_model');
 // 成员表
 const user_model = sequelize.define(
   'user_model',
@@ -27,6 +27,6 @@ const user_model = sequelize.define(
   }
 );
 
-user_model.belongsTo(usertype_model, { foreignKey: 'usertypenum', as: 'usertype' });
+user_model.belongsTo(role_model, { foreignKey: 'roleId', as: 'role' });
 
 module.exports = user_model;
