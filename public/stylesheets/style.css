@@ -107,8 +107,11 @@ table {
   -webkit-justify-content: space-evenly;
   justify-content: space-evenly;
 }
+.firstletter {
+  margin: 15px;
+  padding: 5px;
+}
 .footer {
-  margin-top: 200px;
   width: 100%;
   line-height: 150%;
   background: #181818;

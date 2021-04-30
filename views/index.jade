@@ -11,11 +11,20 @@ block content
       .row
         each item,index in citys
           if item.length > 0
-            p.clearfix
-            p #{index}
+            .clearfix
+            h3.firstletter.bg-success #{index}
             each item2 in item
-              .col-sm-6.col-md-3 #{item2.cityname}
-        
+              .col-sm-6.col-md-3
+                .thumbnail
+                  .caption
+                    h3 #{item2.cityname}
+                    p 主体个数：
+                      if item2.subjectCount > 0
+                        span(style="color:red;font-weight:bold") #{item2.subjectCount}
+                      else
+                        span #{item2.subjectCount}
+                    p
+                      a(href="/subjectinfo/list/#{item2.id}",class="btn btn-info" role="button") 详情
 
     //- CityModal
     div(class="modal fade",id="CityModal",tabindex="-1",role="dialog",data-backdrop="static")
