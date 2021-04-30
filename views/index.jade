@@ -1,6 +1,43 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  if user
+    .container
+      ol.breadcrumb
+        li
+          a(href="/") Home
+      p.pull-right
+        a(data-toggle="modal",data-target="#CityModal") 添加城市
+      .row
+        each item,index in citys
+          if item.length > 0
+            p.clearfix
+            p #{index}
+            each item2 in item
+              .col-sm-6.col-md-3 #{item2.cityname}
+        
+
+    //- CityModal
+    div(class="modal fade",id="CityModal",tabindex="-1",role="dialog",data-backdrop="static")
+      div(class="modal-dialog modal-sm",role="document")
+        .modal-content
+          .modal-header 添加城市
+          .modal-body
+            form(action="/city/add", method="post",class="form-horizontal",role="form") 
+              .form-group
+                label(for="username",class="col-sm-3 control-label") 城市
+                .col-sm-8
+                  input(type="text",class="form-control",name="cityname",placeholder="请输入城市",required)
+              .form-group
+                label(for="password",class="col-sm-3 control-label") 首字母
+                .col-sm-8
+                  input(type="text",class="form-control",name="firstletter",placeholder="请输入首字母（大写）",required)
+              hr
+              .d-f  
+                button(type="submit",class="btn btn-primary") 添加
+                button(type="button",class="btn btn-default",data-dismiss="modal") 退出
+
+  else
+    .container
+      h1 请登录
 

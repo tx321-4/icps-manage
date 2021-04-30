@@ -24,7 +24,7 @@ exports.findUserName = async(name)=>{
   let res = await user_model.findOne({ include: [{ 
     model: role_model,
     as: 'role',
-    attributes: ['rolename']
+    attributes: ['id','rolename']
    }], where: { username: name } });
   return res;
 }

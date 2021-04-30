@@ -6,13 +6,6 @@
 exports.login = async(req, res) =>{
   let username = req.body.username;
   let password = req.body.password;
-  if(!username){
-    req.flash('danger', '请输入账户');
-    return res.redirect('back');
-  }else if(!password){
-    req.flash('danger', '请输入密码');
-    return res.redirect('back');
-  }
   const user = await user_service.findUserName(username);
   try {
     if(user) {
@@ -42,18 +35,6 @@ exports.register = async(req, res) =>{
   let username = req.body.username;
   let password = req.body.password;
   let roleId = req.body.roleId;
-  if(!username){
-    req.flash('danger', '请输入账户');
-    return res.redirect('back');
-  }else if(!password){
-    req.flash('danger', '请输入密码');
-    return res.redirect('back');
-  }else if(!roleId){
-    req.flash('danger', '请选择角色');
-    return res.redirect('back');
-  }else{
-
-  }
   let user = await user_service.findUserName(username);
   try {
     if(user){
@@ -71,6 +52,10 @@ exports.register = async(req, res) =>{
 }
 
 exports.logout = async(req, res) => {
+  if(!req.session.user)
+  {
+    await res.redirect('/');
+  }
   //清空session中用户信息
   req.session.user = null;
   req.flash('success', '退出成功');

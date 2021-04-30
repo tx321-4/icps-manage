@@ -17,14 +17,15 @@ block navigation
               ul.dropdown-menu
                 li 
                   a #{user.role.rolename}
-                li
-                  a(href="/users/logout") 退出
+            li
+              a(href="/users/logout") 退出
           else
             li
-              button(type="button",class="btn btn-primary",style="margin:8px 8px 0 0;",data-toggle="modal",data-target="#LoginModal") 登录
-              button(type="button",class="btn btn-default",style="margin-top:8px;",data-toggle="modal",data-target="#RegisterModal") 注册          
+              a(style="margin:8px 8px 0 0;",data-toggle="modal",data-target="#LoginModal") 登录
+            li
+              a(style="margin-top:8px;",data-toggle="modal",data-target="#RegisterModal") 注册
   if !user
-    //- LoginModal          
+    //- LoginModal
     div(class="modal fade",id="LoginModal",tabindex="-1",role="dialog",data-backdrop="static")
       div(class="modal-dialog modal-sm",role="document")
         .modal-content
@@ -35,16 +36,16 @@ block navigation
               .form-group
                 label(for="username",class="col-sm-3 control-label") 账户
                 .col-sm-8
-                  input(type="text",class="form-control",id="username",name="username",placeholder="请输入账户")
+                  input(type="text",class="form-control",id="username",name="username",placeholder="请输入账户",required)
               .form-group
                 label(for="password",class="col-sm-3 control-label") 密码
                 .col-sm-8
-                  input(type="password",class="form-control",id="password",name="password",placeholder="请输入密码")  
+                  input(type="password",class="form-control",id="password",name="password",placeholder="请输入密码",required)
               hr
               .d-f  
                 button(type="submit",class="btn btn-primary") 登录
                 button(type="button",class="btn btn-default",data-dismiss="modal") 退出
-    //- RegisterModal        
+    //- RegisterModal
     div(class="modal fade",id="RegisterModal",tabindex="-1",role="dialog",data-backdrop="static")
       div(class="modal-dialog modal-sm",role="document")
         .modal-content
@@ -55,22 +56,22 @@ block navigation
               .form-group
                 label(for="username",class="col-sm-3 control-label") 账户
                 .col-sm-8
-                  input(type="text",class="form-control",name="username",placeholder="请输入账户")
+                  input(type="text",class="form-control",name="username",placeholder="请输入账户",required)
               .form-group
                 label(for="password",class="col-sm-3 control-label") 密码
                 .col-sm-8
-                  input(type="password",class="form-control",name="password",placeholder="请输入密码")
+                  input(type="password",class="form-control",name="password",placeholder="请输入密码",required)
               .form-group
                 label(for="roleId",class="col-sm-3 control-label") 角色
                 .col-sm-8
-                  select(name='roleId', id='roleId',class="form-control") 
-                    option(value='') 请选择角色                
+                  select(name='roleId', id='roleId',class="form-control",required) 
+                    option(value='') 请选择角色
                     each item in roles
-                      option(value= item.id)= item.rolename                
+                      option(value= item.id)= item.rolename
               hr
               .d-f  
                 button(type="submit",class="btn btn-primary") 注册
-                button(type="button",class="btn btn-default",data-dismiss="modal") 退出              
+                button(type="button",class="btn btn-default",data-dismiss="modal") 退出
           
 
           
