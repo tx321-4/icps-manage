@@ -1,12 +1,12 @@
 const city_service = require('../../service/city_service');
-
+//添加城市
 exports.add = async(req, res) =>{
   let cityname = req.body.cityname;
   const firstletter = req.body.firstletter.toUpperCase();
   let city = await city_service.findCityName(cityname);
   try {
     if(city){
-      req.falsh('danger', '城市已存在');
+      req.flash('danger', '城市已存在');
       return res.redirect('/');
     }else{
       await city_service.create(cityname,firstletter);
@@ -14,7 +14,74 @@ exports.add = async(req, res) =>{
       return res.redirect('/');
     }
   } catch (error) {
-    req.falsh('danger', error.message);
+    req.flash('danger', error.message);
     return res.redirect('/');
   }
+}
+
+//获取城市信息
+exports.edit = async(req,res) =>{
+  const cityId = req.params.cityId;
+  let city = await city_service.findCityId(cityId);
+  try {
+    if(city){
+      res.render('city/edit', {
+        title: '修改城市 '+city.cityname,
+        city: city,
+      })  
+    }else{
+      req.flash('danger', '城市不存在');
+      return res.redirect('back');
+    }
+  } catch (error) {
+    req.flash('danger', error.message);
+    return res.redirect('back');
+  } 
+}
+//修改城市信息
+exports.process_edit = async(req, res) =>{
+  let cityId = req.body.id;
+  let cityname = req.body.cityname.trim();
+  let firstletter = req.body.firstletter.trim();
+  let subjectCount = req.body.subjectCount.trim();
+  let city = await city_service.findCityId(cityId);
+  try {
+    if(city){
+      await city_service.cityModify(cityId, cityname, firstletter,subjectCount);
+      req.flash('success', '修改城市成功');
+      return res.redirect('/');  
+    }else{
+      req.flash('danger', '城市不存在');
+      return res.redirect('back');
+    }
+  } catch (error) {
+    req.flash('danger', error.message);
+    return res.redirect('back');
+  }
+
+}
+
+//删除城市
+exports.delete = async(req, res) =>{
+  const id = req.params.cityId;
+  let city = await city_service.findCityId(id);
+  try {
+    if(city){
+      if(city.subjectCount == 0){
+        await city_service.deleteCityId(id);
+        req.flash('success', '删除城市成功');
+        return res.redirect('/');
+      }else{
+        req.flash('danger', '项目下有资质未删除');
+        return res.redirect('back'); 
+      }  
+    }else{
+      req.flash('danger', '城市不存在');
+      return res.redirect('back');
+    }
+  } catch (error) {
+    req.flash('danger', error.message);
+    return res.redirect('back');
+  } 
+
 }

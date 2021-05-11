@@ -93,7 +93,7 @@ table {
 .ta-c {
   text-align: center;
 }
-.d-f {
+.d-f-se {
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -106,6 +106,20 @@ table {
   -ms-flex-pack: space-evenly;
   -webkit-justify-content: space-evenly;
   justify-content: space-evenly;
+}
+.d-f-sb {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
 }
 .firstletter {
   margin: 15px;

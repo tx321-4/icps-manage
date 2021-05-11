@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a.text-muted #{city.cityname}
+      li 
+        a.text-muted 修改
+    
+    form(action="/city/edit/#{city.id}", method="post",role="form" ) 
+      input( type='hidden',value='#{city.id}',name="id",required)
+      .row 
+        div.form-group.col-sm-4
+          label(for='cityname') 城市名
+          input( type='text',class='form-control',name="cityname",id='cityname',placeholder='城市名',value='#{city.cityname}',required)
+      .row
+        div.form-group.col-sm-4
+          label(for='firstletter') 首字母
+          input( type='text',class='form-control',name="firstletter",id='firstletter',placeholder='首字母',value='#{city.firstletter}',required)
+      .row
+        div.form-group.col-sm-4
+          label(for='subjectCount') 主体个数
+          input( type='text',class='form-control',name="subjectCount",id='subjectCount',placeholder='主体个数',value='#{city.subjectCount}',required)  
+      .d-f-se.form-group.col-sm-4 
+        button(type="submit",class="btn btn-primary") 修改  
+        a(href="javascript:;", onClick="javascript:history.back(-1);",class="btn btn-default") 取消
+        
+
+      
+      

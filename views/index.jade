@@ -23,8 +23,13 @@ block content
                         span(style="color:red;font-weight:bold") #{item2.subjectCount}
                       else
                         span #{item2.subjectCount}
-                    p
+                    p.d-f-sb
                       a(href="/subjectinfo/list/#{item2.id}",class="btn btn-info" role="button") 详情
+                      span.d-f-se(style="align-items: flex-end;")
+                        a(href="/city/edit/#{item2.id}",class="text-info") 修改
+                        &nbsp;&nbsp;&nbsp;
+                        a(href="/city/del/#{item2.id}",class="text-danger") 删除
+                    
 
     //- CityModal
     div(class="modal fade",id="CityModal",tabindex="-1",role="dialog",data-backdrop="static")
@@ -42,7 +47,7 @@ block content
                 .col-sm-8
                   input(type="text",class="form-control",name="firstletter",placeholder="请输入首字母（大写）",required)
               hr
-              .d-f  
+              .d-f-se  
                 button(type="submit",class="btn btn-primary") 添加
                 button(type="button",class="btn btn-default",data-dismiss="modal") 退出
 
