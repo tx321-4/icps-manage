@@ -7,6 +7,7 @@ const flash = require('connect-flash');
 const logger = require('morgan');
 const stylus = require('express-stylus')
 const nib = require('nib');
+const moment = require('moment');
 const models = require('./models/models');
 
 const config = require('./config');
@@ -50,6 +51,7 @@ app.use(flash());
 
 app.use(function(req,res, next){
   res.locals.user = req.session.user;
+  res.locals.moment = moment;
   res.locals.success = req.flash('success').toString();
   res.locals.danger = req.flash('danger').toString();
   next();

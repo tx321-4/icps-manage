@@ -1,0 +1,67 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a(href="/subject/list/#{city.id}") #{city.cityname}
+       li
+        a.text-muted #{subject.subject_name}  
+    
+  .container.subject_container
+    .row
+      .col-sm-12.col-md-12
+        table.table.table-bordered.table-striped
+          caption
+            .d-f-sb
+              h3 主体信息
+                p 备案状态：
+                  if subject.subject_state == '未整改'
+                    span.label.label-danger #{subject.subject_state}
+                  else if subject.subject_state == '进行中'
+                    span.label.label-warning #{subject.subject_state}
+                  else if subject.subject_state == '已注销'
+                    span.label.label-danger #{subject.subject_state}                  
+                  else 
+                    span.label.label-success #{subject.subject_state}
+              
+              span 更新时间：#{moment(subject.updatedAt).format('YYYY-MM-DD')}
+            tbody
+              colgroup
+                col(width="50%")
+                col(width="50%")
+              tr
+                td 备案号：#{subject.icp_num}
+                td
+              tr
+                td 主办单位或主办人全称：#{subject.subject_name}
+                td 主办单位性质：企业
+              tr
+                td 主办单位证件类型：营业执照（个人或企业）
+                td 主办单位证件号码：#{subject.subject_num}
+              tr
+                td 主办单位证件住所：#{subject.subject_residence}
+                td 主办单位所属区域：#{subject.subject_area}
+              tr
+                td 主办单位通信地址：#{subject.subject_addr}
+                td 投资人或主管单位：#{subject.subject_name2}
+              tr
+                td 负责人姓名：#{subject.subjectman}
+                td 负责人证件类型：居民身份证
+              tr
+                td 负责人证件号码：#{subject.subjectman_num}
+                td 联系方式1：#{subject.subjectman_tel1}
+              tr
+                td 联系方式2：#{subject.subjectman_tel2}
+                td 应急联系电话：#{subject.subjectman_tel3}
+              tr
+                td 电子邮件地址：#{subject.subjectman_email}
+                td 备注信息：#{subject.note_info}  
+  .container.subject_container
+    .row
+      .col-sm-12.col-md-12
+        .d-f-sb
+          h3 网站个数： #{subject.websiteCount} 
+          a(href="/website/add/#{subject.id}") 添加网站

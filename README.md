@@ -59,6 +59,7 @@ ICP备案中心，方便查阅
 * 要与 express-session 搭配使用
 
 ### 配置环境变量 NODE_ENV
+>在window下 用  set ,在linux下 用 export
 ```bash
   "dev": "set NODE_ENV=development && nodemon DEBUG=icps-manage:* ./bin/www",
   "pro": "set NODE_ENV=production && nodemon DEBUG=icps-manage:* ./bin/www"

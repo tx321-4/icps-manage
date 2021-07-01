@@ -1,0 +1,51 @@
+extends ../layout
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a.text-muted #{city.cityname}
+      li 
+        a.text-muted 资质列表
+    p.pull-right
+        a(href="/subject/add/#{city.id}") 添加资质
+    .row
+      .clearfix
+      each item,index in subjects
+        .col-sm-6.col-md-4 
+          .thumbnail
+            .caption
+              h4(style="margin-bottom:30px;") #{item.subject_name}
+              div(class="row zzlist")
+                .col-sm-4 备案状态：
+                .col-sm-7
+                  if item.subject_state == '未整改'
+                    span.label.label-danger #{item.subject_state}
+                  else if item.subject_state == '进行中'
+                    span.label.label-warning #{item.subject_state}
+                  else if item.subject_state == '已注销'
+                    span.label.label-danger #{item.subject_state}                  
+                  else 
+                    span.label.label-success #{item.subject_state}
+              div(class="row zzlist")
+                .col-sm-4 说明：
+                .col-sm-7 #{item.subject_stateinfo}
+              div(class="row zzlist")
+                .col-sm-4 备案号：
+                .col-sm-7 #{item.icp_num}  
+              div(class="row zzlist")
+                .col-sm-4 负责人：
+                .col-sm-7 #{item.subjectman}
+              div(class="row zzlist")
+                .col-sm-4 网站个数：
+                .col-sm-7 #{item.websiteCount}
+              div(class="row zzlist")
+                .col-sm-4 更新时间：
+                .col-sm-7 #{moment(item.updatedAt).format('YYYY-MM-DD')}
+              p(style="padding: 0 15px",class="d-f-sb")
+                a(href="/subject/detail/#{item.id}",class="btn btn-info" role="button") 详情
+                span.d-f-se(style="align-items: flex-end;")
+                  a(href="/subject/edit/#{item.id}",class="text-info") <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                  &nbsp;&nbsp;&nbsp;
+                  a(href="/subject/del/#{item.id}",class="text-danger") <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

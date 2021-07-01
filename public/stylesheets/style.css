@@ -125,6 +125,53 @@ table {
   margin: 15px;
   padding: 5px;
 }
+.zzlist {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.zzlist .col-sm-4 {
+  text-align: right;
+  padding: 5px 15px;
+}
+.zzlist .col-sm-7 {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 15px;
+}
+.subject_container .d-f-sb {
+  -webkit-box-align: baseline;
+  -moz-box-align: baseline;
+  -o-box-align: baseline;
+  -ms-flex-align: baseline;
+  -webkit-align-items: baseline;
+  align-items: baseline;
+}
+.subject_container .d-f-sb h3 {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-align: end;
+  -moz-box-align: end;
+  -o-box-align: end;
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  color: #000;
+}
+.subject_container .d-f-sb h3 p {
+  margin-bottom: 0;
+  font-size: 14px;
+  margin-left: 20px;
+  display: inline;
+}
+.subject_container .d-f-sb>span {
+  color: #000;
+}
+.subject_container tr td {
+  padding: 15px 30px !important;
+}
 .footer {
   width: 100%;
   line-height: 150%;

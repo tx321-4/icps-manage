@@ -21,8 +21,8 @@ module.exports = function(app){
      });
   })
   app.use('/users', require('./users'));
-  app.use('/city', require('./city'));
-
+  app.use('/city', require('./city')); // 城市
+  app.use('/subject', require('./subject'))
   // 404 page
   app.use(function (req, res) {
     if(!res.headersSent){

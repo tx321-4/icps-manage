@@ -1,0 +1,92 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a(href="/subject/list/#{city.id}") #{city.cityname}
+      li 
+        a.text-muted 添加资质
+     form(action="/subject/add/", class="form-horizontal", method="post",role="form")
+      .row
+        div.form-group
+          label(for='icp_num',class="col-sm-4 control-label") 备案号：
+          .col-sm-6
+            input( type='text',class='form-control',name="icp_num",id='icp_num',placeholder='请输入备案号',value='',required)
+        div.form-group
+          label(for='subject_name',class="col-sm-4 control-label") 主办单位或主办人全称：
+          .col-sm-6
+            input( type='text',class='form-control',name="subject_name",id='subject_name',placeholder='请输入办单位或主办人全称',value='',required)
+        div.form-group
+          label(for='subject_num',class="col-sm-4 control-label") 主办单位证件号码：
+          .col-sm-6
+            input( type='text',class='form-control',name="subject_num",id='subject_num',placeholder='请输入主办单位证件号码',value='',required)
+        div.form-group
+          label(for='subject_residence',class="col-sm-4 control-label") 主办单位证件住所：
+          .col-sm-6
+            input( type='text',class='form-control',name="subject_residence",id='subject_residence',placeholder='请输入主办单位证件住所',value='',required)
+        div.form-group
+          label(for='subject_area',class="col-sm-4 control-label") 主办单位所属区域：
+          .col-sm-6
+            input( type='text',class='form-control',name="subject_area",id='subject_area',placeholder='请输入主办单位所属区域',value='',required)
+        div.form-group
+          label(for='subject_addr',class="col-sm-4 control-label") 主办单位通信地址：
+          .col-sm-6
+            input( type='text',class='form-control',name="subject_addr",id='subject_addr',placeholder='请输入主办单位通信地址',value='',required)
+        div.form-group
+          label(for='subject_name2',class="col-sm-4 control-label") 投资人或主管单位：
+          .col-sm-6
+            input( type='text',class='form-control',name="subject_name2",id='subject_name2',placeholder='请输入投资人或主管单位',value='',required)
+        div.form-group
+          label(for='subjectman',class="col-sm-4 control-label") 负责人姓名：
+          .col-sm-6
+            input( type='text',class='form-control',name="subjectman",id='subjectman',placeholder='请输入负责人姓名',value='',required)
+        div.form-group
+          label(for='subjectman_num',class="col-sm-4 control-label") 负责人证件号码：
+          .col-sm-6
+            input( type='text',class='form-control',name="subjectman_num",id='subjectman_num',placeholder='请输入负责人证件号码',value='',required)
+        div.form-group
+          label(for='subjectman_tel1',class="col-sm-4 control-label") 联系方式1：
+          .col-sm-6
+            input( type='text',class='form-control',name="subjectman_tel1",id='subjectman_tel1',placeholder='请输入联系方式1',value='',required)
+        div.form-group
+          label(for='subjectman_tel2',class="col-sm-4 control-label") 联系方式2：
+          .col-sm-6
+            input( type='text',class='form-control',name="subjectman_tel2",id='subjectman_tel2',placeholder='请输入联系方式2',value='')
+        div.form-group
+          label(for='subjectman_tel3',class="col-sm-4 control-label") 应急联系电话：
+          .col-sm-6
+            input( type='text',class='form-control',name="subjectman_tel3",id='subjectman_tel3',placeholder='请输入应急联系电话',value='')
+        div.form-group
+          label(for='subjectman_email',class="col-sm-4 control-label") 电子邮件地址：
+          .col-sm-6
+            input( type='text',class='form-control',name="subjectman_email",id='subjectman_email',placeholder='请输入电子邮件地址',value='',required)
+        div.form-group
+          label(for='note_info',class="col-sm-4 control-label") 备注信息：
+          .col-sm-6
+            input( type='text',class='form-control',name="note_info",id='note_info',placeholder='请输入备注信息',value='')
+        div.form-group
+          label(for='subject_state',class="col-sm-4 control-label") 备案状态：
+          .col-sm-6
+            select(name='subject_state', id='subject_state',class="form-control",required) 
+              option(value='') 请选择备案状态
+              option(value='已完成') 已完成
+              option(value='进行中') 进行中
+              option(value='未整改') 未整改
+              option(value='已注销') 已注销
+        div.form-group
+          label(for='subject_stateinfo',class="col-sm-4 control-label") 备案状态说明：
+          .col-sm-6
+            input( type='text',class='form-control',name="subject_stateinfo",id='subject_stateinfo',placeholder='请输入备案状态说明',value='')
+        div.form-group
+          label(for='cityId',class="col-sm-4 control-label") 城市：
+          .col-sm-6
+            select(name='cityId', id='cityId',class="form-control",required) 
+              option(value='#{city.id}') #{city.cityname}
+        .d-f-se.form-group 
+          button(type="submit",class="btn btn-primary") 修改  
+          a(href="javascript:;", onClick="javascript:history.back(-1);",class="btn btn-default") 取消
+         
+    
