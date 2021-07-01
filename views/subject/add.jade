@@ -18,7 +18,7 @@ block content
         div.form-group
           label(for='subject_name',class="col-sm-4 control-label") 主办单位或主办人全称：
           .col-sm-6
-            input( type='text',class='form-control',name="subject_name",id='subject_name',placeholder='请输入办单位或主办人全称',value='',required)
+            input( type='text',class='form-control',name="subject_name",id='subject_name',placeholder='请输入主办单位或主办人全称',value='',required)
         div.form-group
           label(for='subject_num',class="col-sm-4 control-label") 主办单位证件号码：
           .col-sm-6
@@ -86,7 +86,7 @@ block content
             select(name='cityId', id='cityId',class="form-control",required) 
               option(value='#{city.id}') #{city.cityname}
         .d-f-se.form-group 
-          button(type="submit",class="btn btn-primary") 修改  
+          button(type="submit",class="btn btn-primary") 添加
           a(href="javascript:;", onClick="javascript:history.back(-1);",class="btn btn-default") 取消
          
     
