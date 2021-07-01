@@ -11,7 +11,7 @@
  Target Server Version : 50617
  File Encoding         : 65001
 
- Date: 01/07/2021 17:18:54
+ Date: 01/07/2021 18:03:24
 */
 
 SET NAMES utf8mb4;
@@ -97,7 +97,7 @@ CREATE TABLE `subject`  (
 -- Records of subject
 -- ----------------------------
 INSERT INTO `subject` VALUES (2, '10xxxxxxx111', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '4239sssxxxxx919181', '13700001111', '13488884444', '1678888cccc', '193729@xx.com', '备注', 0, '已完成', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-01 16:21:20', 5);
-INSERT INTO `subject` VALUES (3, '210xxxxxx', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '4239sssxxxxx919181', '13700001111', '13488884444', '1678888cccc', '193729@xx.com', '备注', 0, '进行中', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-01 16:22:56', 5);
+INSERT INTO `subject` VALUES (3, '210xxxxxx', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '4239sssxxxxx919181', '13700001111', '13488884444', '1678888cccc', '193729@xx.com', '备注', 1, '进行中', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-01 18:02:16', 5);
 
 -- ----------------------------
 -- Table structure for user
@@ -122,5 +122,38 @@ CREATE TABLE `user`  (
 INSERT INTO `user` VALUES (1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055', '2021-04-29 16:56:38', '2021-04-29 16:56:38', 1);
 INSERT INTO `user` VALUES (2, 'admin2', '81dc9bdb52d04dc20036dbd8313ed055', '2021-04-29 16:59:40', '2021-04-29 16:59:40', 2);
 INSERT INTO `user` VALUES (3, 'a', 'c81e728d9d4c2f636f067f89cc14862c', '2021-04-29 17:00:21', '2021-04-29 17:00:21', 2);
+
+-- ----------------------------
+-- Table structure for website
+-- ----------------------------
+DROP TABLE IF EXISTS `website`;
+CREATE TABLE `website`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `website_num` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '网站编号',
+  `website_num2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '网站备案号',
+  `website_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '网站名称',
+  `website_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '网站URL',
+  `website_web` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '网站域名',
+  `website_content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '网站内容',
+  `websiteman` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '负责人姓名',
+  `websiteman_num` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '证件号码',
+  `website_tel1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '联系方式1',
+  `website_tel2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系方式2',
+  `website_tel3` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '应急联系电话',
+  `website_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '负责人电子邮箱',
+  `note_info` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
+  `createdAt` datetime(0) NOT NULL,
+  `updatedAt` datetime(0) NOT NULL,
+  `subjectId` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `website_num`(`website_num`) USING BTREE,
+  INDEX `subjectId`(`subjectId`) USING BTREE,
+  CONSTRAINT `website_ibfk_1` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of website
+-- ----------------------------
+INSERT INTO `website` VALUES (1, '123456', '2342342342', '头xxx', 'www.xxxxx.com', 'www.xxxxx.com', '官网', '张三', '2342342842xxxdfsdf', '13588884444', '16844443233', '15799998844', '1212@xxx.com', 'd', '2021-07-01 18:02:16', '2021-07-01 18:02:16', 3);
 
 SET FOREIGN_KEY_CHECKS = 1;
