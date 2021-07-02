@@ -11,7 +11,7 @@
  Target Server Version : 50617
  File Encoding         : 65001
 
- Date: 01/07/2021 18:03:24
+ Date: 02/07/2021 10:51:29
 */
 
 SET NAMES utf8mb4;
@@ -39,7 +39,7 @@ INSERT INTO `city` VALUES (1, 'H', '杭州', 0, '2021-07-01 11:29:48', '2021-07-
 INSERT INTO `city` VALUES (2, 'S', '深圳', 0, '2021-07-01 11:29:57', '2021-07-01 11:29:57');
 INSERT INTO `city` VALUES (3, 'S', '上海', 0, '2021-07-01 11:30:06', '2021-07-01 11:30:06');
 INSERT INTO `city` VALUES (4, 'W', '武汉', 0, '2021-07-01 11:30:17', '2021-07-01 11:30:17');
-INSERT INTO `city` VALUES (5, 'B', '北京', 1, '2021-07-01 11:30:37', '2021-07-01 13:55:23');
+INSERT INTO `city` VALUES (5, 'B', '北京', 1, '2021-07-01 11:30:37', '2021-07-02 10:45:27');
 
 -- ----------------------------
 -- Table structure for role
@@ -96,8 +96,7 @@ CREATE TABLE `subject`  (
 -- ----------------------------
 -- Records of subject
 -- ----------------------------
-INSERT INTO `subject` VALUES (2, '10xxxxxxx111', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '4239sssxxxxx919181', '13700001111', '13488884444', '1678888cccc', '193729@xx.com', '备注', 0, '已完成', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-01 16:21:20', 5);
-INSERT INTO `subject` VALUES (3, '210xxxxxx', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '4239sssxxxxx919181', '13700001111', '13488884444', '1678888cccc', '193729@xx.com', '备注', 1, '进行中', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-01 18:02:16', 5);
+INSERT INTO `subject` VALUES (3, '210xxxxxx', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '4239sssxxxxx919181', '13700001111', '13488884444', '1678888cccc', '193729@xx.com', '备注', 1, '进行中', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-02 10:34:11', 5);
 
 -- ----------------------------
 -- Table structure for user
@@ -149,11 +148,11 @@ CREATE TABLE `website`  (
   UNIQUE INDEX `website_num`(`website_num`) USING BTREE,
   INDEX `subjectId`(`subjectId`) USING BTREE,
   CONSTRAINT `website_ibfk_1` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of website
 -- ----------------------------
-INSERT INTO `website` VALUES (1, '123456', '2342342342', '头xxx', 'www.xxxxx.com', 'www.xxxxx.com', '官网', '张三', '2342342842xxxdfsdf', '13588884444', '16844443233', '15799998844', '1212@xxx.com', 'd', '2021-07-01 18:02:16', '2021-07-01 18:02:16', 3);
+INSERT INTO `website` VALUES (1, '123456', '2342342342', '头xxx', 'www.xxxxx.com', 'www.xxxxx.com', '官网', '张三', '2342342842xxxdfsdf', '13588884444', '16844443233', '15799998844', '1212@xxx.com', 'd5', '2021-07-01 18:02:16', '2021-07-02 10:15:19', 3);
 
 SET FOREIGN_KEY_CHECKS = 1;
