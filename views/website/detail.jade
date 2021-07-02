@@ -1,0 +1,51 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a(href="/subject/detail/#{subject.id}") #{subject.subject_name}
+       li
+        a.text-muted #{website.website_url}  
+    
+  .container.subject_container
+    .row
+      .col-sm-12.col-md-12
+        table.table.table-bordered.table-striped
+          caption
+            .d-f-sb
+              h3 网站信息
+              span 更新时间：#{moment(website.updatedAt).format('YYYY-MM-DD')}
+            tbody
+              colgroup
+                col(width="50%")
+                col(width="50%")
+              tr
+                td 网站备案号：#{website.icp_num}
+                td
+              tr
+                td 网站编号：#{website.website_num}
+                td 网站名称：#{website.website_name}
+              tr
+                td 网站URL：#{website.website_url}
+                td 网站域名：#{website.website_web}
+              tr
+                td 网站内容：#{website.website_content}
+                td 前置审批类型：
+              tr
+                td 负责人姓名：#{website.websiteman}
+                td 负责人证件类型：居民身份证
+              tr
+                td 负责人证件号码：#{website.websiteman_num}
+                td 联系方式1：#{website.website_tel1}
+              tr
+                td 联系方式2：#{website.website_tel2}
+                td 应急联系电话：#{website.website_tel3}
+              tr
+                td 电子邮件地址：#{website.website_email}
+                td 网站语言：中文简体 
+              tr
+                td 服务类型：网站应用服务
+                td 备注信息：#{website.note_info}                  

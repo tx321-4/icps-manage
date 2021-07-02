@@ -1,0 +1,79 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a(href="/subject/detail/#{subject.id}") #{subject.subject_name}
+       li
+        a(href="/website/detail/#{website.id}") #{website.website_url}  
+      li 
+        a.text-muted 编辑网站
+     form(action="/website/edit", class="form-horizontal", method="post",role="form")
+      input( type='hidden',value='#{website.id}',name="id",required)
+      .row
+        div.form-group
+          label(for='website_num',class="col-sm-4 control-label") 网站编号：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_num",id='website_num',placeholder='请输入网站编号',value='#{website.website_num}',required)
+        div.form-group
+          label(for='website_num2',class="col-sm-4 control-label") 网站备案号：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_num2",id='website_num2',placeholder='请输入网站备案号',value='#{website.website_num2}',required)
+        div.form-group
+          label(for='website_name',class="col-sm-4 control-label") 网站名称：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_name",id='website_name',placeholder='请输入网站名称',value='#{website.website_name}',required)
+        div.form-group
+          label(for='website_url',class="col-sm-4 control-label") 网站URL：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_url",id='website_url',placeholder='请输入网站URL',value='#{website.website_url}',required)
+        div.form-group
+          label(for='website_web',class="col-sm-4 control-label") 网站域名：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_web",id='website_web',placeholder='请输入网站域名',value='#{website.website_web}',required)
+        div.form-group
+          label(for='website_content',class="col-sm-4 control-label") 网站内容：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_content",id='website_content',placeholder='请输入网站内容',value='#{website.website_content}',required)
+        div.form-group
+          label(for='websiteman',class="col-sm-4 control-label") 负责人姓名：
+          .col-sm-6
+            input( type='text',class='form-control',name="websiteman",id='websiteman',placeholder='请输入负责人姓名',value='#{website.websiteman}',required)
+        div.form-group
+          label(for='websiteman_num',class="col-sm-4 control-label") 负责人证件号码：
+          .col-sm-6
+            input( type='text',class='form-control',name="websiteman_num",id='websiteman_num',placeholder='请输入负责人证件号码',value='#{website.websiteman_num}',required)
+        div.form-group
+          label(for='website_tel1',class="col-sm-4 control-label") 联系方式1：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_tel1",id='website_tel1',placeholder='请输入联系方式1',value='#{website.website_tel1}',required)
+        div.form-group
+          label(for='website_tel2',class="col-sm-4 control-label") 联系方式2：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_tel2",id='website_tel2',placeholder='请输入联系方式2',value='#{website.website_tel2}')
+        div.form-group
+          label(for='website_tel3',class="col-sm-4 control-label") 应急联系电话：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_tel3",id='website_tel3',placeholder='请输入应急联系电话',value='#{website.website_tel3}')
+        div.form-group
+          label(for='website_email',class="col-sm-4 control-label") 电子邮件地址：
+          .col-sm-6
+            input( type='text',class='form-control',name="website_email",id='website_email',placeholder='请输入电子邮件地址',value='#{website.website_email}',required)
+        div.form-group
+          label(for='note_info',class="col-sm-4 control-label") 备注信息：
+          .col-sm-6
+            input( type='text',class='form-control',name="note_info",id='note_info',placeholder='请输入备注信息',value='#{website.note_info}')
+
+        div.form-group
+          label(for='subjectId',class="col-sm-4 control-label") 主体资质：
+          .col-sm-6
+            select(name='subjectId', id='subjectId',class="form-control",required) 
+              option(value='#{subject.id}') #{subject.subject_name}
+        .d-f-se.form-group 
+          button(type="submit",class="btn btn-primary") 编辑
+          a(href="javascript:;", onClick="javascript:history.back(-1);",class="btn btn-default") 取消
+         
+    

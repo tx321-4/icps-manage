@@ -11,5 +11,5 @@ router.post('/add', isLogin, isSuperAdmin, subject_route.process_add); //添加�
 router.get('/edit/:subjectId',isLogin, isSuperAdmin,subject_route.edit); // 获取资质信息
 router.post('/edit',isLogin, isSuperAdmin, subject_route.process_edit); // 修改资质信息
 router.get('/detail/:subjectId',isLogin, isSuperAdmin,subject_route.detail); // 获取资质详情
-router.get('/del/:cityId',isLogin, isSuperAdmin, subject_route.delete); // 删除资质
+router.get('/del/:subjectId',isLogin, isSuperAdmin, subject_route.delete); // 删除资质
 module.exports = router;

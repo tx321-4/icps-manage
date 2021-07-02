@@ -120,5 +120,28 @@ exports.detail = async(req,res) =>{
 }
 //删除资质
 exports.delete = async(req, res) =>{
-
+  let condition = {
+    id: req.params.subjectId
+    };
+  let subject = await subject_service.findOne(condition);
+  try {
+    if(subject){
+      if(subject.websiteCount == 0){
+        await subject_service.deleteId(condition.id,subject.cityId);
+        req.flash('success', '删除资质成功');
+        let url = '/subject/list/'+ subject.cityId
+        return res.redirect(url); 
+      }else{
+        req.flash('danger', '资质下有网站未删除');
+        return res.redirect('back'); 
+      }
+        
+    }else{
+      req.flash('danger', '资质不存在');
+      return res.redirect('back');
+    }
+  } catch (error) {
+    req.flash('danger', error.message);
+    return res.redirect('back');
+  } 
 }

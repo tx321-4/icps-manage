@@ -81,3 +81,19 @@ exports.update = async (data) => {
     await subject_model.update(opt, { where: { id: data.id }, transaction: t });
   });
 };
+
+// 删除网站
+exports.deleteId = async(id,cityId) =>{
+  await sequelize.transaction({ autocommit: true }, async (t) => {
+    if (cityId && cityId !== '') {
+      await city_model.update(
+        { subjectCount: Sequelize.literal('subjectCount - 1') },
+        { where: { id: cityId }, transaction: t }
+      );
+    } else {
+      cityId = null;
+    }
+    await subject_model.destroy({ where: { id: id }, transaction: t });
+  });
+ 
+}

@@ -41,16 +41,19 @@ exports.process_add = async(req, res) =>{
 //获取网站信息
 exports.edit = async(req,res) =>{
   let condition = {
-    id: req.params.subjectId
+    id: req.params.websiteId
     };
-  let subject = await website_service.findOne(condition);
+  let website = await website_service.findOne(condition);
   try {
-    if(subject){
-      let city = await city_service.findCityId(subject.cityId);
-      await res.render('subject/edit', {
-        title: subject.subject_name+'_编辑网站',
-        city: city,
-        subject: subject
+    if(website){
+      let condition2 = {
+        id: website.subjectId
+        };
+      let subject = await subject_service.findOne(condition2);
+      await res.render('website/edit', {
+        title: website.website_url+'_编辑网站',
+        subject: subject,
+        website: website
       });
     }else{
       req.flash('danger', '网站不存在');
@@ -66,12 +69,12 @@ exports.process_edit = async(req, res) =>{
   let condition = {
     id: req.body.id
   };
-  let subject = await website_service.findOne(condition);
+  let website = await website_service.findOne(condition);
   try {
-    if(subject){
+    if(website){
       await website_service.update(req.body);
       req.flash('success', '编辑网站成功');
-      let url = '/subject/list/'+ req.body.cityId
+      let url = '/subject/detail/'+ req.body.subjectId
       return res.redirect(url); 
     }else{
       req.flash('danger', '网站不存在');
@@ -86,16 +89,19 @@ exports.process_edit = async(req, res) =>{
 //获取网站信息
 exports.detail = async(req,res) =>{
   let condition = {
-    id: req.params.subjectId
+    id: req.params.websiteId
     };
-  let subject = await website_service.findOne(condition);
+  let website = await website_service.findOne(condition);
   try {
-    if(subject){
-      let city = await city_service.findCityId(subject.cityId);
-      await res.render('subject/detail', {
-        title: subject.subject_name,
-        city: city,
-        subject: subject
+    if(website){
+      let condition2 = {
+        id: website.subjectId
+        };
+      let subject = await subject_service.findOne(condition2);
+      await res.render('website/detail', {
+        title: website.website_url,
+        subject: subject,
+        website: website
       });
     }else{
       req.flash('danger', '网站不存在');
@@ -108,5 +114,22 @@ exports.detail = async(req,res) =>{
 }
 //删除网站
 exports.delete = async(req, res) =>{
-
+  let condition = {
+    id: req.params.websiteId
+    };
+  let website = await website_service.findOne(condition);
+  try {
+    if(website){
+        await website_service.deleteId(condition.id,website.subjectId);
+        req.flash('success', '删除网站成功');
+        let url = '/subject/detail/'+ website.subjectId
+        return res.redirect(url); 
+    }else{
+      req.flash('danger', '网站不存在');
+      return res.redirect('back');
+    }
+  } catch (error) {
+    req.flash('danger', error.message);
+    return res.redirect('back');
+  } 
 }

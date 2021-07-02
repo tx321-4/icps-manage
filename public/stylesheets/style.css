@@ -121,6 +121,20 @@ table {
   -webkit-justify-content: space-between;
   justify-content: space-between;
 }
+.d-f-c {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
 .firstletter {
   margin: 15px;
   padding: 5px;
@@ -171,6 +185,12 @@ table {
 }
 .subject_container tr td {
   padding: 15px 30px !important;
+}
+.subject_container2 table thead {
+  background-color: #f9f9f9;
+}
+.subject_container2 table thead td:last-of-type {
+  text-align: center;
 }
 .footer {
   width: 100%;
