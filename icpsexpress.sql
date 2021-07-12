@@ -11,11 +11,29 @@
  Target Server Version : 50617
  File Encoding         : 65001
 
- Date: 02/07/2021 10:51:29
+ Date: 12/07/2021 17:57:10
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for accoicp
+-- ----------------------------
+DROP TABLE IF EXISTS `accoicp`;
+CREATE TABLE `accoicp`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `acco_tel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '联系方式',
+  `acco_t_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '电话所属人员',
+  `acco_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '电子邮件地址',
+  `acco_e_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '邮箱所属人员',
+  `createdAt` datetime(0) NOT NULL,
+  `updatedAt` datetime(0) NOT NULL,
+  `subjectId` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `subjectId`(`subjectId`) USING BTREE,
+  CONSTRAINT `accoicp_ibfk_1` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for city
@@ -40,6 +58,20 @@ INSERT INTO `city` VALUES (2, 'S', '深圳', 0, '2021-07-01 11:29:57', '2021-07-
 INSERT INTO `city` VALUES (3, 'S', '上海', 0, '2021-07-01 11:30:06', '2021-07-01 11:30:06');
 INSERT INTO `city` VALUES (4, 'W', '武汉', 0, '2021-07-01 11:30:17', '2021-07-01 11:30:17');
 INSERT INTO `city` VALUES (5, 'B', '北京', 1, '2021-07-01 11:30:37', '2021-07-02 10:45:27');
+
+-- ----------------------------
+-- Table structure for email
+-- ----------------------------
+DROP TABLE IF EXISTS `email`;
+CREATE TABLE `email`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email_num` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '邮箱号码',
+  `email_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '邮箱所属人员',
+  `createdAt` datetime(0) NOT NULL,
+  `updatedAt` datetime(0) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `email_num`(`email_num`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for role
@@ -97,6 +129,20 @@ CREATE TABLE `subject`  (
 -- Records of subject
 -- ----------------------------
 INSERT INTO `subject` VALUES (3, '210xxxxxx', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '4239sssxxxxx919181', '13700001111', '13488884444', '1678888cccc', '193729@xx.com', '备注', 1, '进行中', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-02 10:34:11', 5);
+
+-- ----------------------------
+-- Table structure for tel
+-- ----------------------------
+DROP TABLE IF EXISTS `tel`;
+CREATE TABLE `tel`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tel_num` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '电话号码',
+  `tel_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '电话所属人员',
+  `createdAt` datetime(0) NOT NULL,
+  `updatedAt` datetime(0) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `tel_num`(`tel_num`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for user

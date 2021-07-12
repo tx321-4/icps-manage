@@ -9,9 +9,9 @@ block navigation
           span.icon-bar
         a.navbar-brand(href="/") 首页 
         if (user && user.roleId == '1' )
-          a(href="/acc_icp",class="btn",style="margin-top: 7px;",role="button") 账户
-          a(href="/tel",class="btn",style="margin-top: 7px;",role="button") 手机号
-          a(href="/email",class="btn",style="margin-top: 7px;",role="button") 邮箱
+          a(href="/acc_icp/list",class="btn",style="margin-top: 7px;",role="button") 账户
+          a(href="/tel/list",class="btn",style="margin-top: 7px;",role="button") 手机号
+          a(href="/email/list",class="btn",style="margin-top: 7px;",role="button") 邮箱
       .collapse.navbar-collapse#example-navbar-collapse
         ul.nav.navbar-nav.navbar-right
           if user 

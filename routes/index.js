@@ -24,6 +24,9 @@ module.exports = function(app){
   app.use('/city', require('./city')); // 城市
   app.use('/subject', require('./subject')) // 资质
   app.use('/website', require('./website')) // 网站
+  app.use('/tel', require('./tel')) // 手机号
+  app.use('/email', require('./email')) // 邮箱
+  app.use('/acc_icp', require('./acc_icp')) // 账户
   // 404 page
   app.use(function (req, res) {
     if(!res.headersSent){
