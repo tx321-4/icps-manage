@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li 所有资质
+    
+  .container.subject_container
+    .row
+      .col-sm-12.col-md-12
+        table.table.table-striped
+          caption
+            .d-f-sb
+              h3 所有资质: #{length} 个
+          tbody
+            colgroup
+              col(width="35%")
+              col(width="15%")
+              col(width="18%")
+              col(width="22%")
+              col(width="10%")
+            thead
+              tr
+                td 资质
+                td 备案号
+                td 主体负责人
+                td 备案状态
+                td 操作
+            tbody
+            each item in subjects
+              tr
+                td #{item.subject_name}
+                td #{item.icp_num}
+                td #{item.subjectman}
+                td 
+                  if item.subject_state == '未整改'
+                    span.label.label-danger #{item.subject_state}
+                  else if item.subject_state == '进行中'
+                    span.label.label-warning #{item.subject_state}
+                  else if item.subject_state == '已注销'
+                    span.label.label-danger #{item.subject_state}                  
+                  else 
+                    span.label.label-success #{item.subject_state}
+                td 
+                  span.d-f-c(style="align-items: center;")
+                    a(href="/subject/detail/#{item.id}",class="text-primary") <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>

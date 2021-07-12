@@ -14,6 +14,15 @@ exports.findList = async (cityId) => {
   });
   return result;
 };
+// 所有资质
+exports.findAll = async () => {
+  const result = await subject_model.findAll({include: [{all: true}],
+    attributes:
+    ['id','subject_name','icp_num','subjectman','subject_state'],
+    order: [['subjectman', 'DESC']]
+  });
+  return result;
+};
 
 // 条件搜索
 exports.findOne = async (condition) => {

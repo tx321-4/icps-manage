@@ -5,6 +5,7 @@ const isSuperAdmin = require('../middlewares/admin').isSuperAdmin;
 const subject_route = require('./route/subject_route');
 
 // 添加资质
+router.get('/all', isLogin, isSuperAdmin, subject_route.all); //添加所有资质
 router.get('/list/:cityId',isLogin, isSuperAdmin,subject_route.list); // 获取当前城市下资质列表
 router.get('/add/:cityId', isLogin, isSuperAdmin, subject_route.add); //添加资质 get
 router.post('/add', isLogin, isSuperAdmin, subject_route.process_add); //添加资质 post

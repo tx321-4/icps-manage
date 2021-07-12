@@ -15,6 +15,16 @@ exports.list = async(req, res) => {
   });
 }
 
+// 添加所有资质
+exports.all = async(req, res) =>{
+  const subjects = await subject_service.findAll();
+  res.render('subject/all', {
+    title: '所有资质',
+    subjects: subjects,
+    length: subjects.length
+  });
+}
+
 //添加资质 get
 exports.add = async(req, res) =>{
   const cityId = req.params.cityId;
