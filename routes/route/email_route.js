@@ -2,44 +2,43 @@ const email_service = require('../../service/email_service');
 
 //获取邮箱列表
 exports.list = async(req,res) =>{
-  const tels = await email_service.findList();
-  res.render('tel/list', {
+  const emails = await email_service.findList();
+  res.render('email/list', {
     title: '邮箱列表',
-    tels: tels,
-    length: tels.length
+    emails: emails,
+    length: emails.length
   });
-  
 }
 
 //添加邮箱
 exports.add = async(req, res) =>{
-  let cityname = req.body.cityname;
-  const firstletter = req.body.firstletter.toUpperCase();
-  let city = await email_service.findCityName(cityname);
+  let email_num = req.body.email_num.trim();
+  const email_name = req.body.email_name.trim();
+  let email = await email_service.findEmailNum(email_num);
   try {
-    if(city){
+    if(email){
       req.flash('danger', '邮箱已存在');
-      return res.redirect('/');
+      return res.redirect('/email/list');
     }else{
-      await email_service.create(cityname,firstletter);
+      await email_service.create(email_num,email_name);
       req.flash('success', '添加邮箱成功');
-      return res.redirect('/');
+      return res.redirect('/email/list');
     }
   } catch (error) {
     req.flash('danger', error.message);
-    return res.redirect('/');
+    return res.redirect('/email/list');
   }
 }
 
 //获取邮箱信息
 exports.edit = async(req,res) =>{
-  const cityId = req.params.cityId;
-  let city = await email_service.findCityId(cityId);
+  const id = req.params.emailId;
+  let email = await email_service.findEmailId(id);
   try {
-    if(city){
-      res.render('city/edit', {
-        title: '修改邮箱 '+city.cityname,
-        city: city,
+    if(email){
+      res.render('email/edit', {
+        title: '修改邮箱-'+email.email_num,
+        email: email,
       })  
     }else{
       req.flash('danger', '邮箱不存在');
@@ -52,16 +51,15 @@ exports.edit = async(req,res) =>{
 }
 //修改邮箱信息
 exports.process_edit = async(req, res) =>{
-  let cityId = req.body.id;
-  let cityname = req.body.cityname.trim();
-  let firstletter = req.body.firstletter.trim();
-  let subjectCount = req.body.subjectCount.trim();
-  let city = await email_service.findCityId(cityId);
+  let emailId = req.body.id;
+  let email_num = req.body.email_num.trim();
+  let email_name = req.body.email_name.trim();
+  let email = await email_service.findEmailId(emailId);
   try {
-    if(city){
-      await email_service.cityModify(cityId, cityname, firstletter,subjectCount);
+    if(email){
+      await email_service.EmailModify(emailId, email_num, email_name);
       req.flash('success', '修改邮箱成功');
-      return res.redirect('/');  
+      return res.redirect('/email/list');  
     }else{
       req.flash('danger', '邮箱不存在');
       return res.redirect('back');
@@ -75,25 +73,20 @@ exports.process_edit = async(req, res) =>{
 
 //删除邮箱
 exports.delete = async(req, res) =>{
-  const id = req.params.cityId;
-  let city = await email_service.findCityId(id);
+  const id = req.params.emailId;
+  let email = await email_service.findEmailId(id);
   try {
-    if(city){
-      if(city.subjectCount == 0){
-        await email_service.deleteCityId(id);
+    if(email){
+        await email_service.deleteEmailId(id);
         req.flash('success', '删除邮箱成功');
-        return res.redirect('/');
-      }else{
-        req.flash('danger', '项目下有资质未删除');
-        return res.redirect('back'); 
-      }  
+        return res.redirect('/email/list');
+       
     }else{
       req.flash('danger', '邮箱不存在');
-      return res.redirect('back');
+      return res.redirect('/email/list');
     }
   } catch (error) {
     req.flash('danger', error.message);
     return res.redirect('back');
   } 
-
 }

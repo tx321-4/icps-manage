@@ -26,7 +26,7 @@ module.exports = function(app){
   app.use('/website', require('./website')) // 网站
   app.use('/tel', require('./tel')) // 手机号
   app.use('/email', require('./email')) // 邮箱
-  app.use('/acc_icp', require('./acc_icp')) // 账户
+  app.use('/accoicp', require('./accoicp')) // 账户
   // 404 page
   app.use(function (req, res) {
     if(!res.headersSent){

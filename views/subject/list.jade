@@ -10,7 +10,7 @@ block content
         a.text-muted 资质列表
     if (user && user.roleId == '1' )         
       p.pull-right
-        a(href="/subject/add/#{city.id}") 添加资质
+        a(href="/subject/add/#{city.id}",class="btn btn-primary",role="button") 添加资质
     .row
       .clearfix
       each item,index in subjects

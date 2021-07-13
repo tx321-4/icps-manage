@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   .container
@@ -6,37 +6,40 @@ block content
       li
         a(href="/") Home
       li 手机号
-    if (user && user.roleId == '1' )          
-      p.pull-right
-        a(data-toggle="modal",data-target="#TelModal") 添加手机号
-    .container.subject_container
-      .row
-        .col-sm-12.col-md-12
-          table.table.table-striped
-            caption
-              .d-f-sb
-                h3 电话列表: #{length} 个
+
+  .container.tel_container
+    .row
+      .col-sm-12.col-md-12
+        table.table.table-striped
+          caption
+          div
+            h4.pull-left 电话列表: #{length} 个
+            if (user && user.roleId == '1' )          
+            p.pull-right
+              a(data-toggle="modal",class="btn btn-primary",role="button",data-target="#TelModal") 添加手机号
+          tbody
+            colgroup
+              col(width="10%")
+              col(width="40%")
+              col(width="30%")
+              col(width="20%")
+            thead
+              tr
+                td ID
+                td 手机号
+                td 所属人
+                td 操作
             tbody
-              colgroup
-                col(width="10%")
-                col(width="40%")
-                col(width="30%")
-                col(width="20%")
-              thead
-                tr
-                  td ID
-                  td 手机号
-                  td 所属人
-                  td 操作
-              tbody
-              each item in tels
-                tr
-                  td #{item.id}
-                  td #{item.tel_num}
-                  td #{item.tel_name}
-                  td 
-                    span.d-f-c(style="align-items: center;")
-                      a(href="/tel/edit/#{item.id}",class="text-info") <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            each item in tels
+              tr
+                td #{item.id}
+                td #{item.tel_num}
+                td #{item.tel_name}
+                td 
+                  span.d-f(style="align-items: center;")
+                    a(href="/tel/edit/#{item.id}",class="text-info") <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    &nbsp;&nbsp;&nbsp;
+                    a(href="/tel/del/#{item.id}",class="text-danger") <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 
 
   //- TelModal
@@ -45,15 +48,15 @@ block content
       .modal-content
         .modal-header 添加手机号
         .modal-body
-          form(action="/city/add", method="post",class="form-horizontal",role="form") 
+          form(action="/tel/add", method="post",class="form-horizontal",role="form") 
             .form-group
-              label(for="username",class="col-sm-3 control-label") 手机号
+              label(for="tel_num",class="col-sm-3 control-label") 手机号
               .col-sm-8
-                input(type="text",class="form-control",name="cityname",placeholder="请输入手机号",required)
+                input(type="text",id="tel_num",class="form-control",name="tel_num",placeholder="请输入手机号",required)
             .form-group
-              label(for="password",class="col-sm-3 control-label") 首字母
+              label(for="tel_name",class="col-sm-3 control-label") 所属人
               .col-sm-8
-                input(type="text",class="form-control",name="firstletter",placeholder="请输入首字母（大写）",required)
+                input(type="text",id="tel_name",class="form-control",name="tel_name",placeholder="请输入所属人",required)
             hr
             .d-f-se  
               button(type="submit",class="btn btn-primary") 添加

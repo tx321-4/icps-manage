@@ -8,23 +8,23 @@ exports.findList = async(opt) => {
   return result;
 }
 
-// 查找是否存在手机号
+// 查找是否存在账户
 exports.findCityName = async (city) => {
   const result = await accoicp_model.findOne({ include: [{ all: true }], where: { cityname: city } });
   return result;
 };
 
-// 查找是否存在手机号
+// 查找是否存在账户
 exports.findCityId = async (id) => {
   const result = await accoicp_model.findOne({ include: [{ all: true }], where: { id: id } });
   return result;
 };
 
-//添加手机号
+//添加账户
 exports.create = async (city, firstletter) => {
   await accoicp_model.create({cityname: city, firstletter: firstletter});
 }
-// 修改手机号
+// 修改账户
 exports.cityModify =  async(id, cityname, firstletter,subjectCount) =>{
   await sequelize.transaction({ autocommit: true }, async (t) => {
     let opt = {
@@ -36,7 +36,7 @@ exports.cityModify =  async(id, cityname, firstletter,subjectCount) =>{
   });
 
   }
-// 删除手机号
+// 删除账户
 exports.deleteCityId = async(id) =>{
   await sequelize.transaction({ autocommit: true }, async (t) => {
     await accoicp_model.destroy({ where: { id: id }, transaction: t });

@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a.text-muted 邮箱
+      li
+        a.text-muted #{email.email_num}
+      li 
+        a.text-muted 修改
+    
+    form(action="/email/edit/#{email.id}", method="post",role="form" ) 
+      input( type='hidden',value='#{email.id}',name="id",required)
+      .row 
+        div.form-group.col-sm-4
+          label(for='email_num') 手机号
+          input( type='text',class='form-control',name="email_num",id='email_num',placeholder='手机号',value='#{email.email_num}',required)
+      .row
+        div.form-group.col-sm-4
+          label(for='email_name') 所属人
+          input( type='text',class='form-control',name="email_name",id='email_name',placeholder='所属人',value='#{email.email_name}',required)
+      .d-f-se.form-group.col-sm-4 
+        button(type="submit",class="btn btn-primary") 修改  
+        a(href="javascript:;", onClick="javascript:history.back(-1);",class="btn btn-default") 取消
+        
+
+      
+      

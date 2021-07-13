@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a.text-muted 手机号
+      li
+        a.text-muted #{tel.tel_num}
+      li 
+        a.text-muted 修改
+    
+    form(action="/tel/edit/#{tel.id}", method="post",role="form" ) 
+      input( type='hidden',value='#{tel.id}',name="id",required)
+      .row 
+        div.form-group.col-sm-4
+          label(for='tel_num') 手机号
+          input( type='text',class='form-control',name="tel_num",id='tel_num',placeholder='手机号',value='#{tel.tel_num}',required)
+      .row
+        div.form-group.col-sm-4
+          label(for='tel_name') 所属人
+          input( type='text',class='form-control',name="tel_name",id='tel_name',placeholder='所属人',value='#{tel.tel_name}',required)
+      .d-f-se.form-group.col-sm-4 
+        button(type="submit",class="btn btn-primary") 修改  
+        a(href="javascript:;", onClick="javascript:history.back(-1);",class="btn btn-default") 取消
+        
+
+      
+      

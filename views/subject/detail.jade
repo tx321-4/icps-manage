@@ -63,10 +63,10 @@ block content
     .row
       .col-sm-12.col-md-12
             caption
-              .d-f-sb
+              .d-f-sb(style="margin-bottom:20px;")
                 h3 网站个数： #{subject.websiteCount} 
                 if (user && user.roleId == '1' )
-                  a(href="/website/add/#{subject.id}") 添加网站
+                  a(href="/website/add/#{subject.id}",class="btn btn-primary",role="button") 添加网站
            
   .container.subject_container2
       .row

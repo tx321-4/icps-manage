@@ -3,41 +3,41 @@ const {sequelize } = require('../models/db');
 let email_model = models.email_model;
 
 // 搜索所有
-exports.findList = async(opt) => {
-  const result = await email_model.findList(opt);
+exports.findList = async() => {
+  const result = await email_model.findAll({include: [{all: true}]});
   return result;
 }
 
-// 查找是否存在手机号
-exports.findCityName = async (city) => {
-  const result = await email_model.findOne({ include: [{ all: true }], where: { cityname: city } });
+// 查找是否存在邮箱
+exports.findEmailNum = async (num) => {
+  const result = await email_model.findOne({ include: [{ all: true }], where: { email_num: num } });
   return result;
 };
 
-// 查找是否存在手机号
-exports.findCityId = async (id) => {
+// 查找是否存在邮箱
+exports.findEmailId = async (id) => {
   const result = await email_model.findOne({ include: [{ all: true }], where: { id: id } });
   return result;
 };
 
-//添加手机号
-exports.create = async (city, firstletter) => {
-  await email_model.create({cityname: city, firstletter: firstletter});
+//添加邮箱
+exports.create = async (num, name) => {
+  await email_model.create({email_num: num, email_name: name});
 }
-// 修改手机号
-exports.cityModify =  async(id, cityname, firstletter,subjectCount) =>{
+// 修改邮箱
+exports.EmailModify =  async(id, num, name) =>{
   await sequelize.transaction({ autocommit: true }, async (t) => {
     let opt = {
-      cityname: cityname,
-      firstletter: firstletter,
-      subjectCount: subjectCount
+      email_num: num,
+      email_name: name,
+ 
     };
     await email_model.update(opt, { where: { id: id }, transaction: t });
   });
 
   }
-// 删除手机号
-exports.deleteCityId = async(id) =>{
+// 删除邮箱
+exports.deleteEmailId = async(id) =>{
   await sequelize.transaction({ autocommit: true }, async (t) => {
     await email_model.destroy({ where: { id: id }, transaction: t });
   });
