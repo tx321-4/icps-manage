@@ -11,7 +11,7 @@
  Target Server Version : 50617
  File Encoding         : 65001
 
- Date: 12/07/2021 17:57:10
+ Date: 13/07/2021 16:32:53
 */
 
 SET NAMES utf8mb4;
@@ -33,7 +33,7 @@ CREATE TABLE `accoicp`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `subjectId`(`subjectId`) USING BTREE,
   CONSTRAINT `accoicp_ibfk_1` FOREIGN KEY (`subjectId`) REFERENCES `subject` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for city
@@ -71,7 +71,13 @@ CREATE TABLE `email`  (
   `updatedAt` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `email_num`(`email_num`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of email
+-- ----------------------------
+INSERT INTO `email` VALUES (2, '104334gayx@xx.com', '大师', '2021-07-13 16:03:21', '2021-07-13 16:03:21');
+INSERT INTO `email` VALUES (3, '5432111188@xxx.com', '大明', '2021-07-13 16:19:11', '2021-07-13 16:19:11');
 
 -- ----------------------------
 -- Table structure for role
@@ -85,13 +91,14 @@ CREATE TABLE `role`  (
   `updatedAt` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`rolename`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES (1, '超级管理员', 1, '2021-04-29 11:06:09', '2021-04-29 16:56:38');
-INSERT INTO `role` VALUES (2, '管理员', 2, '2021-04-29 11:06:09', '2021-04-29 17:00:21');
+INSERT INTO `role` VALUES (2, '管理员', 1, '2021-04-29 11:06:09', '2021-04-29 17:00:21');
+INSERT INTO `role` VALUES (3, '浏览员', 1, '2021-07-13 15:53:30', '2021-07-13 15:53:34');
 
 -- ----------------------------
 -- Table structure for subject
@@ -128,7 +135,7 @@ CREATE TABLE `subject`  (
 -- ----------------------------
 -- Records of subject
 -- ----------------------------
-INSERT INTO `subject` VALUES (3, '210xxxxxx', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '4239sssxxxxx919181', '13700001111', '13488884444', '1678888cccc', '193729@xx.com', '备注', 1, '进行中', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-02 10:34:11', 5);
+INSERT INTO `subject` VALUES (3, '210xxxxxx', 'xx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx字节跳xxxx节跳xxxx', '582023848503081xxxxx92929', '北京', '北京', '北京', '字节跳xxxx', 'Boss', '42390000000091918', '13700001111', '13488884444', '1678888cccc', '104334gayx@xx.com', '备注', 1, '进行中', '说明说明说明说明说明说明说明说明说明说明说明说明', '2021-07-01 13:55:23', '2021-07-13 16:16:26', 5);
 
 -- ----------------------------
 -- Table structure for tel
@@ -142,7 +149,17 @@ CREATE TABLE `tel`  (
   `updatedAt` datetime(0) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `tel_num`(`tel_num`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tel
+-- ----------------------------
+INSERT INTO `tel` VALUES (3, '13700001111', '张三', '2021-07-13 16:02:06', '2021-07-13 16:02:06');
+INSERT INTO `tel` VALUES (4, '1678888cccc', '小月', '2021-07-13 16:02:18', '2021-07-13 16:02:18');
+INSERT INTO `tel` VALUES (5, '13488884444', '大师', '2021-07-13 16:02:29', '2021-07-13 16:02:29');
+INSERT INTO `tel` VALUES (6, '13588884444', '大明', '2021-07-13 16:18:37', '2021-07-13 16:18:37');
+INSERT INTO `tel` VALUES (7, '16844443233', '小明', '2021-07-13 16:18:45', '2021-07-13 16:18:45');
+INSERT INTO `tel` VALUES (8, '15799998844', '小惠', '2021-07-13 16:18:58', '2021-07-13 16:18:58');
 
 -- ----------------------------
 -- Table structure for user
@@ -165,8 +182,8 @@ CREATE TABLE `user`  (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055', '2021-04-29 16:56:38', '2021-04-29 16:56:38', 1);
-INSERT INTO `user` VALUES (2, 'admin2', '81dc9bdb52d04dc20036dbd8313ed055', '2021-04-29 16:59:40', '2021-04-29 16:59:40', 2);
-INSERT INTO `user` VALUES (3, 'a', 'c81e728d9d4c2f636f067f89cc14862c', '2021-04-29 17:00:21', '2021-04-29 17:00:21', 2);
+INSERT INTO `user` VALUES (2, 'editer', '81dc9bdb52d04dc20036dbd8313ed055', '2021-04-29 16:59:40', '2021-04-29 16:59:40', 2);
+INSERT INTO `user` VALUES (3, 'visiter', '81dc9bdb52d04dc20036dbd8313ed055', '2021-04-29 17:00:21', '2021-04-29 17:00:21', 3);
 
 -- ----------------------------
 -- Table structure for website
@@ -199,6 +216,6 @@ CREATE TABLE `website`  (
 -- ----------------------------
 -- Records of website
 -- ----------------------------
-INSERT INTO `website` VALUES (1, '123456', '2342342342', '头xxx', 'www.xxxxx.com', 'www.xxxxx.com', '官网', '张三', '2342342842xxxdfsdf', '13588884444', '16844443233', '15799998844', '1212@xxx.com', 'd5', '2021-07-01 18:02:16', '2021-07-02 10:15:19', 3);
+INSERT INTO `website` VALUES (1, '123456', '2342342342', '头xxx', 'www.xxxxx.com,www.xxxxx.com,www.xxxxx.com', 'www.xxxxx.com,www.xxxxx.com,www.xxxxx.com', '官网', '张三', '2342342842xxxdfsd', '13588884444', '16844443233', '15799998844', '5432111188@xxx.com', 'd5', '2021-07-01 18:02:16', '2021-07-13 16:17:45', 3);
 
 SET FOREIGN_KEY_CHECKS = 1;

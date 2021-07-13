@@ -53,11 +53,19 @@ block content
               tr
                 td 负责人证件号码：#{subject.subjectman_num}
                 td 联系方式1：#{subject.subjectman_tel1}
+                  if tel1_user
+                    （#{tel1_user}）
               tr
                 td 联系方式2：#{subject.subjectman_tel2}
+                  if tel2_user
+                    （#{tel2_user}）
                 td 应急联系电话：#{subject.subjectman_tel3}
+                  if tel3_user
+                    （#{tel3_user}）
               tr
                 td 电子邮件地址：#{subject.subjectman_email}
+                  if email_user
+                    （#{email_user}）
                 td 备注信息：#{subject.note_info}  
   .container.subject_container
     .row

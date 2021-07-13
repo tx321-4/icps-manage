@@ -23,7 +23,15 @@ exports.findAll = async () => {
   });
   return result;
 };
-
+// 所有资质
+exports.findAllTwo = async () => {
+  const result = await subject_model.findAll({include: [{all: true}],
+    attributes:
+    ['id','subject_name'],
+    order: [['subject_name', 'DESC']]
+  });
+  return result;
+};
 // 条件搜索
 exports.findOne = async (condition) => {
   const result = await subject_model.findOne({ include: [{ all: true }], where: condition });

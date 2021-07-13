@@ -29,8 +29,12 @@ block content
                 td 网站编号：#{website.website_num}
                 td 网站名称：#{website.website_name}
               tr
-                td 网站URL：#{website.website_url}
-                td 网站域名：#{website.website_web}
+                td  
+                  span.pull-left 网站URL：
+                  span.pull-left  #{website.website_url}
+                td 
+                  span.pull-left 网站域名：
+                  span.pull-left  #{website.website_web}
               tr
                 td 网站内容：#{website.website_content}
                 td 前置审批类型：
@@ -40,11 +44,19 @@ block content
               tr
                 td 负责人证件号码：#{website.websiteman_num}
                 td 联系方式1：#{website.website_tel1}
+                  if tel1_user
+                    （#{tel1_user}）
               tr
                 td 联系方式2：#{website.website_tel2}
+                  if tel2_user
+                    （#{tel2_user}）
                 td 应急联系电话：#{website.website_tel3}
+                  if tel3_user
+                    （#{tel3_user}）
               tr
                 td 电子邮件地址：#{website.website_email}
+                  if email_user
+                    （#{email_user}）
                 td 网站语言：中文简体 
               tr
                 td 服务类型：网站应用服务

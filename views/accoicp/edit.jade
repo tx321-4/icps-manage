@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+  .container
+    ol.breadcrumb
+      li
+        a(href="/") Home
+      li
+        a.text-muted 账户
+      li
+        a.text-muted #{accoicp.subject.subject_name}
+      li 
+        a.text-muted 修改
+    
+    form(action="/accoicp/edit/#{accoicp.id}", method="post",role="form" ) 
+      input( type='hidden',value='#{accoicp.id}',name="id",required)
+      .row
+        div.form-group.col-sm-8
+          label(for='subjectId') 资质
+          select(name='subjectId', id='subjectId',class="form-control",required) 
+            option(value='#{accoicp.subjectId}') #{accoicp.subject.subject_name}
+      .row 
+        div.form-group.col-sm-8
+          label(for='acco_tel') 手机号
+          input( type='text',class='form-control',name="acco_tel",id='acco_tel',placeholder='手机号',value='#{accoicp.acco_tel}',required)
+      .row 
+        div.form-group.col-sm-8
+          label(for='acco_email') 邮箱
+          input( type='text',class='form-control',name="acco_email",id='acco_email',placeholder='邮箱',value='#{accoicp.acco_email}',required)          
+      
+      .d-f-se.form-group.col-sm-8 
+        button(type="submit",class="btn btn-primary") 修改  
+        a(href="javascript:;", onClick="javascript:history.back(-1);",class="btn btn-default") 取消
+        
+
+      
+      

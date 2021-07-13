@@ -193,12 +193,18 @@ table {
 }
 .subject_container tr td {
   padding: 15px 30px !important;
+  word-wrap: break-word;
+  white-space: pre-line;
 }
 .subject_container2 table thead {
   background-color: #f9f9f9;
 }
 .subject_container2 table thead td:last-of-type {
   text-align: center;
+}
+.subject_container2 table tr td {
+  word-wrap: break-word;
+  white-space: pre-line;
 }
 .footer {
   width: 100%;

@@ -1,7 +1,8 @@
 const city_service = require('../../service/city_service');
 const subject_service = require('../../service/subject_service');
 const website_service = require('../../service/website_service');
-
+const tel_service = require('../../service/tel_service');
+const email_service = require('../../service/email_service');
 // 获取当前城市下资质列表
 exports.list = async(req, res) => {
   const cityId = req.params.cityId;
@@ -112,12 +113,50 @@ exports.detail = async(req,res) =>{
     if(subject){
 
       let websites = await website_service.findList(subject.id);
+      for (let i = 0; i < websites.length; i++) {
+        let website_web1 = websites[i].website_web;
+        websites[i].website_web = website_web1.replace(/,/g, '\r');
+      }
+      let tel1 = subject.subjectman_tel1;
+      let tel2 = subject.subjectman_tel2;
+      let tel3 = subject.subjectman_tel3;
+      let email1 = subject.subjectman_email;
+    
+      let tel1_user = await tel_service.findTelNum(tel1);
+      let tel2_user = await tel_service.findTelNum(tel2);
+      let tel3_user = await tel_service.findTelNum(tel3);
+      let email_user = await email_service.findEmailNum(email1);
+      if(req.session.user.roleId !== 1 ){
+        // 不是超级管理员
+        let num = subject.subjectman_num;
+    
+        let newnum = num.replace(num.slice(6, 13), '*******');
+        let newtel1 = tel1.replace(tel1.slice(3, 7), '****');
+        let newemail1 = email1.replace(email1.slice(3, 7), '****');
+    
+        subject.subjectman_num = newnum;
+        subject.subjectman_tel1 = newtel1;
+        subject.subjectman_email = newemail1;
+    
+        if (tel2) {
+          let newtel2 = tel2.replace(tel2.slice(3, 9), '*******');
+          subject.subjectman_tel2 = newtel2;
+        }
+        if (tel3) {
+          let newtel3 = tel3.replace(tel3.slice(3, 7), '****');
+          subject.subjectman_tel3 = newtel3;
+        }
+      }
       let city = await city_service.findCityId(subject.cityId);
       await res.render('subject/detail', {
         title: subject.subject_name,
         city: city,
         websites: websites,
-        subject: subject
+        subject: subject,
+        tel1_user: tel1_user.tel_name,
+        tel2_user: tel2_user.tel_name,
+        tel3_user: tel3_user.tel_name,
+        email_user: email_user.email_name
       });
     }else{
       req.flash('danger', '资质不存在');
